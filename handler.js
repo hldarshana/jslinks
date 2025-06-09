@@ -6,7 +6,8 @@ const itemMap = new Map();
         event.preventDefault();
         const itemId = this.getAttribute("data-id");
         const cUrl = this.getAttribute("href");
-        if (itemMap.has(itemId)) {
+        if (itemMap.size === 0 || itemMap.has(itemId)) {
+          itemMap.set(itemId, true);
           window.open(cUrl, '_blank');
           return;
         }
