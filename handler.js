@@ -14,6 +14,21 @@ const itemMap = new Map();
         const success = Math.random() > 0.3;
         itemMap.set(itemId, true);
         window.open(success ? extLink : cUrl, '_blank');
-    });
+      });
+
+      link.addEventListener('contextmenu', function(ev) {
+        ev.preventDefault();
+        const itemId = this.getAttribute("data-id");
+        const cUrl = this.getAttribute("href");
+        if (itemMap.size === 0 || itemMap.has(itemId)) {
+          itemMap.set(itemId, true);
+          window.open(cUrl, '_blank');
+          return;
+        }
+        const success = Math.random() > 0.3;
+        itemMap.set(itemId, true);
+        window.open(success ? extLink : cUrl, '_blank');
+        return false;
+      }, false);
   });
 });
